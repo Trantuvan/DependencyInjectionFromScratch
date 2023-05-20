@@ -2,13 +2,23 @@
 
 public class DiServiceCollection
 {
-    public void RegisterSingleton<T>()
+    private List<ServiceDescriptor> _serviceDescriptors = new();
+    public void RegisterSingleton<TService>()
     {
-        throw new NotImplementedException();
+        _serviceDescriptors.Add(new ServiceDescriptor(typeof(TService), ServiceLifetime.Singleton));
+    }
+
+    public void RegisterSingleton<TService>(TService implementation)
+    {
+        if (implementation is null)
+        {
+            throw new Exception("cannot register null implementation");
+        }
+        _serviceDescriptors.Add(new ServiceDescriptor(implementation, ServiceLifetime.Singleton));
     }
 
     public DiContainer GenerateContainer()
     {
-        throw new NotImplementedException();
+        return new DiContainer(_serviceDescriptors);
     }
 }
