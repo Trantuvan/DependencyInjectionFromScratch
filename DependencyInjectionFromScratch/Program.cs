@@ -9,9 +9,15 @@ class Program
         var services = new DiServiceCollection();
 
         services.RegisterSingleton<RandomGuidGenerator>();
+        services.RegisterSingleton(new RandomGuidGenerator());
 
         var container = services.GenerateContainer();
 
-        var service = container.GetService<RandomGuidGenerator>();
+        //Get the RandomGuid | the 2nd request should return the same reference as the 1st request
+        var serviceFirst = container.GetService<RandomGuidGenerator>();
+        var serviceSecond = container.GetService<RandomGuidGenerator>();
+
+        Console.WriteLine(serviceFirst.RandomGuid);
+        Console.WriteLine(serviceSecond.RandomGuid);
     }
 }
