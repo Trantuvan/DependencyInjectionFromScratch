@@ -2,6 +2,13 @@
 
 public class ServiceDescriptor
 {
-    public Type Type { get; set; } = default!;
-    public object Implementation { get; set; } = default!;
+    public Type ServiceType { get; } = default!;
+    public object Implementation { get; } = default!;
+    public ServiceLifetime Lifetime { get; }
+    public ServiceDescriptor(object implementation, ServiceLifetime lifetime)
+    {
+        ServiceType = implementation.GetType();
+        Implementation = implementation;
+        Lifetime = lifetime;
+    }
 }
