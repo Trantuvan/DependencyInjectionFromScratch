@@ -11,4 +11,9 @@ public class ServiceDescriptor
         Implementation = implementation;
         Lifetime = lifetime;
     }
+    public ServiceDescriptor(Type serviceType, ServiceLifetime lifetime)
+    {
+        ServiceType = serviceType;
+        Lifetime = lifetime;
+    }
 }
