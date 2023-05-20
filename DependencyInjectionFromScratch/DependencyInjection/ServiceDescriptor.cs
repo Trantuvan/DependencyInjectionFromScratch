@@ -3,7 +3,7 @@
 public class ServiceDescriptor
 {
     public Type ServiceType { get; } = default!;
-    public object Implementation { get; } = default!;
+    public object Implementation { get; internal set; } = default!;
     public ServiceLifetime Lifetime { get; }
     public ServiceDescriptor(object implementation, ServiceLifetime lifetime)
     {
